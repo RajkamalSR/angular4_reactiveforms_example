@@ -1,0 +1,65 @@
+<div *ngIf="!name; else forminfo">
+  <form novalidate [formGroup]="user" (ngSubmit)="onSubmit(user)">
+    <!-- {{ user.controls.name?.errors | json }}
+          {{ user.controls.email?.errors | json }}
+          {{ user.controls.confirm?.errors | json }} -->
+
+    <div class="form-box">
+      <div class="formbox-header">
+        <h4>Login Form</h4>
+      </div>
+
+      <div class="form-fields">
+        <div class="form-group">
+          <label for="fullname" class="bmd-label-floating">Full name</label>
+          <input type="text" name="name"  class="form-control" id="fullname" formControlName="name">
+          <div class="animated error fadeInDown" *ngIf="user.get('name').hasError('required') && user.get('name').touched">
+              {{ validationMessage.needRequiredField }}
+          </div>
+
+          <div class="animated error fadeInDown" *ngIf="user.get('name').hasError('needsExclamation') && user.get('name').touched">
+              {{ validationMessage.needExc }}
+          </div>
+
+          <div class="animated error fadeInDown" *ngIf="user.get('name').hasError('needsSpecialChara') && user.get('name').touched">
+              {{ validationMessage.needSpecialChara }}
+          </div>
+        </div>
+
+        <div formGroupName="account">
+          <div class="form-group">
+            <label for="email"  class="bmd-label-floating">Email</label>
+            <input type="email" name="email" class="form-control" id="email" formControlName="email">
+            <div class="animated error fadeInDown" *ngIf="user.get('account').get('email').hasError('required') && user.get('account').get('email').touched">
+                {{ validationMessage.emailRequired }}
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <label for="confirmemail"  class="bmd-label-floating">Confirm Email</label>
+            <input type="email" name="confirm" class="form-control" id="confirmemail" formControlName="confirm">
+          </div>
+
+          <div class="checkbox">
+              <label>
+                <input type="checkbox"> Remember Me
+              </label>
+            </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary btn-large" [disabled]="user.invalid">Sign up</button>
+    </div>
+
+  </form>
+</div>
+
+
+
+<ng-template #forminfo>
+  <div class="container text-center">
+      <i class="material-icons icon-lg">person</i>
+    <h1>Welcome, {{name}}</h1>
+
+  </div>
+</ng-template>

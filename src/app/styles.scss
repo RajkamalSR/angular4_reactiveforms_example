@@ -1,0 +1,44 @@
+/* You can add global styles to this file, and also import other style files */
+@charset "UTF-8";
+@import './assets/_scss/variables';
+@import './assets/_scss/forms';
+
+body {
+    // font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    // font-size: 1rem;
+    // line-height: 1.5;
+    color: #4a4a4a;
+    // background-color: #fafafa;
+}
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    margin-bottom: 0.25rem;
+    font-family: inherit;
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    color: inherit;
+}
+
+.btn.btn-primary, .btn-primary.custom-file-control::before {
+    background-color: inherit;
+    color: #fff;
+    background: #2dc185;
+    border-color: #ccc;
+}
+
+.btn-large{
+    padding: 14px 18px;
+    width: 100%;
+}
+
+.form-fields{
+    margin-bottom: 34px;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.icon-lg{
+    font-size: 3em;
+}
