@@ -10,8 +10,8 @@ import { Signup } from './signup';
 export class AppComponent {
   user: FormGroup;
   private formValues: any;
-  public name:string;
-  public validationMessage :any;
+  public name: string;
+  public validationMessage: any;
 
   constructor(private fb: FormBuilder) { }
   ngOnInit() {
@@ -26,24 +26,27 @@ export class AppComponent {
     this.formValues = {
       name: 'Rajkamal',
       account: {
-        email: 'rajkamal@gmail.com'
+        email: 'rajkamal@gmail.com',
+        password: '',
       }
-	}
-	
-	this.validationMessage={
-		needExc : 'Exclamation mark missing',
-		needSpecialChara : 'Special Chaarcter missing',
-		needRequiredField : ' This field is required',
-		emailRequired : 'Email required'
-	}
+    }
 
-	// this.validationMessage = 'kkkk'
+    this.validationMessage = {
+      needExc: 'Exclamation mark missing',
+      needSpecialChara: 'Special Chaarcter missing',
+      needRequiredField: ' This field is required',
+      emailRequired: 'Email required',
+      passwordRequired: 'Password Required'
+    }
+
+    // this.validationMessage = 'kkkk'
 
     this.user = this.fb.group({
-      name: [this.formValues.name, [Validators.required, Validators.minLength(5), this.hasExc, this.hasSpecialChara]],
+      name: [this.formValues.name, [Validators.required]],
       account: this.fb.group({
         email: [this.formValues.account.email, Validators.required],
-        confirm: ['', Validators.required]
+        confirm: ['', Validators.required],
+        password: ['', Validators.required]
       })
     });
 
@@ -52,9 +55,8 @@ export class AppComponent {
   }
 
   onSubmit({ value, valid }: { value: Signup, valid: boolean }) {
-	console.log(value.name, valid);
-	
-	this.name = value.name;
+    console.log(value.name, valid);
+    this.name = value.name;
   }
 
 
@@ -68,19 +70,19 @@ export class AppComponent {
     return hasSpecialChara ? null : { needsSpecialChara: true };
   }
 
-//   validInput(input: FormControl){
-// 		return function(input){
-// 			if(input.value.match(/[ !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/)){
-// 				return null;
-// 			}else{
-// 				let s = 1;
-// 				this.validValue();
-// 			}
-// 		}
-//   }
+  //   validInput(input: FormControl){
+  // 		return function(input){
+  // 			if(input.value.match(/[ !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/)){
+  // 				return null;
+  // 			}else{
+  // 				let s = 1;
+  // 				this.validValue();
+  // 			}
+  // 		}
+  //   }
 
-  validValue(){
-	  alert();
+  validValue() {
+    alert();
   }
 
   // public checkPasswordConditions(input: FormControl) {

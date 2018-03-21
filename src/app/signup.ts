@@ -3,5 +3,6 @@ export interface Signup {
     account: {
       email: string;
       confirm: string;
+      password:any;
     }
 }
